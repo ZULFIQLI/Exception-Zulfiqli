@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Prediksi</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f5;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            width: 85%;
+            max-width: 350px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #008cba;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1em;
+            margin: 8px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            background: #008cba;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        a:hover {
+            background: #006b94;
+        }
+
+        .header {
+            background-color: #007acc;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .header ul {
+            list-style: none;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .header ul li {
+            margin: 0;
+        }
+
+        .header ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .header ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .table-container {
+            width: 90%;
+            margin: 20px auto;
+            overflow-x: auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 2px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007acc;
+            color: white;
+        }
+
+        table img {
+            max-width: 100px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hasil Prediksi -->
+    <div class="container">
+        <h1>Hasil Prediksi</h1>
+        <img src="{{ image_url }}" alt="Gambar yang Diunggah">
+        <p>Prediksi: <strong>{{ prediction }}</strong></p>
+        <p>Tingkat Akurasi: <strong>{{ confidence }}%</strong></p>
+        <a href="/">Coba Lagi</a>
+    </div>
+
+    <!-- Tabel Riwayat -->
+    <div class="table-container">
+        <h2>Riwayat Prediksi</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hari</th>
+                    <th>Gambar</th>
+                    <th>Prediksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.timestamps }}</td>
+                    <td><img src="{{ item.image_url }}" alt="Gambar Riwayat"></td>
+                    <td>{{ item.prediction }}</td>
+                    <!--<td>{{ item.size }}</td>-->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
